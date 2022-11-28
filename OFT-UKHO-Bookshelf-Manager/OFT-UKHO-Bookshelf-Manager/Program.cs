@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using OFT_UKHO_Bookshelf_Manager.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Add services to the container.
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
@@ -16,8 +18,16 @@ builder.Services.AddAuthorization(options =>
     // By default, all incoming requests will be authorized according to the default policy.
     options.FallbackPolicy = options.DefaultPolicy;
 });
-builder.Services.AddRazorPages()
-    .AddMicrosoftIdentityUI();
+builder.Services.AddRazorPages().AddMicrosoftIdentityUI();
+
+// TODO - variation of above line to attempt to exclude authentication / ID stuff
+//builder.Services.AddRazorPages();
+
+// TODO - this plus "ConnectionString" line in appsettings.json were an attempt at an alternative method to add the dbContext as a dependency
+/*
+builder.Services.AddDbContext<BookLibraryContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("OFT_UKHO_BookLibrary_DB")));
+*/
 
 var app = builder.Build();
 
