@@ -1,6 +1,6 @@
 namespace OFT_UKHO_Bookshelf_Manager.Models
 {
-    public class WeatherForecast
+    public class X_WeatherForecast
     {
         public DateTime Date { get; set; }
 
