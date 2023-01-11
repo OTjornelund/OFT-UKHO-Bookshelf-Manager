@@ -1,4 +1,4 @@
-namespace OFT_UKHO_Bookshelf_Manager
+namespace OFT_UKHO_Bookshelf_Manager.Models
 {
     public class WeatherForecast
     {
