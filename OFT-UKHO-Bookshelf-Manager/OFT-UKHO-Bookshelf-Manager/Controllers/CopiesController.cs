@@ -71,8 +71,14 @@ namespace OFT_UKHO_Bookshelf_Manager.Controllers
         // POST: api/Copies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Copy>> PostCopy(Copy copy)
+        public async Task<ActionResult<Copy>> PostCopy(int bookId)
         {
+            if (!BookExists(bookId))
+            {
+                return NotFound();
+            }
+
+            var copy = new Copy(bookId);
             _context.Copies.Add(copy);
             await _context.SaveChangesAsync();
 
@@ -98,6 +104,11 @@ namespace OFT_UKHO_Bookshelf_Manager.Controllers
         private bool CopyExists(int id)
         {
             return _context.Copies.Any(e => e.Id == id);
+        }
+
+        private bool BookExists(int id)
+        {
+            return _context.Books.Any(e => e.Id == id);
         }
     }
 }

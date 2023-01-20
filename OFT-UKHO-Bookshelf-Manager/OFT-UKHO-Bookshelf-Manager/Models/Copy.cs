@@ -10,6 +10,12 @@ namespace OFT_UKHO_Bookshelf_Manager.Models
             Rentals = new HashSet<Rental>();
         }
 
+        public Copy(int validBookId)
+        {
+            BookId = validBookId;
+            Rentals = new HashSet<Rental>();
+        }
+
         public int Id { get; set; }
         public int BookId { get; set; }
 
