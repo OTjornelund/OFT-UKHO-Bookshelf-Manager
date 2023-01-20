@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OFT_UKHO_Bookshelf_Manager.DbContexts;
 using OFT_UKHO_Bookshelf_Manager.Models;
@@ -39,30 +40,31 @@ namespace OFT_UKHO_Bookshelf_Manager.Controllers
 
         // PUT: api/Copies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCopy(int id, Copy copy)
+        [HttpPut("{copyId}")]
+        public async Task<IActionResult> PutCopy(int copyId, int newBookId)
         {
-            if (id != copy.Id)
+            if (!CopyExists(copyId))
             {
-                return BadRequest();
+                return NotFound();
             }
 
+            if (!BookExists(newBookId))
+            {
+                return NotFound();
+            }
+
+            var copy = await _context.Copies.FindAsync(copyId);
+            copy.BookId = newBookId;
             _context.Entry(copy).State = EntityState.Modified;
 
+            //TODO: This entire try-catch block might be redundant...?
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CopyExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
