@@ -40,30 +40,39 @@ namespace OFT_UKHO_Bookshelf_Manager.Controllers
 
         // PUT: api/Rentals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRental(int id, Rental rental)
+        [HttpPut("{rentalId}")]
+        public async Task<IActionResult> PutRental(int rentalId, int newCopyId, int newUserId, DateTime newStartDateTime, DateTime? newEndDateTime)
         {
-            if (id != rental.Id)
+            if (!RentalExists(rentalId))
             {
-                return BadRequest();
+                return NotFound("RentalId not found.");
             }
 
+            if (!CopyExists(newCopyId))
+            {
+                return NotFound("CopyId not found.");
+            }
+
+            if (!UserExists(newUserId))
+            {
+                return NotFound("UserId not found.");
+            }
+
+            var rental = await _context.Rentals.FindAsync(rentalId);
+            rental.CopyId = newCopyId;
+            rental.UserId = newUserId;
+            rental.StartDateTime = newStartDateTime;
+            rental.EndDateTime = newEndDateTime;
             _context.Entry(rental).State = EntityState.Modified;
 
+            //TODO: This entire try-catch block might be redundant...?
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RentalExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
