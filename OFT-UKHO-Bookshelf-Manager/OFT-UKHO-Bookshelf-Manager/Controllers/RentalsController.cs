@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OFT_UKHO_Bookshelf_Manager.DbContexts;
 using OFT_UKHO_Bookshelf_Manager.Models;
@@ -71,8 +72,19 @@ namespace OFT_UKHO_Bookshelf_Manager.Controllers
         // POST: api/Rentals
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Rental>> PostRental(Rental rental)
+        public async Task<ActionResult<Rental>> PostRental(int newCopyId, int newUserId, DateTime newStartDateTime, DateTime? newEndDateTime)
         {
+            if (!CopyExists(newCopyId))
+            {
+                return NotFound("CopyId not found.");
+            }
+
+            if (!UserExists(newUserId))
+            {
+                return NotFound("UserId not found.");
+            }
+
+            var rental = new Rental(newCopyId, newUserId, newStartDateTime, newEndDateTime);
             _context.Rentals.Add(rental);
             await _context.SaveChangesAsync();
 
@@ -98,6 +110,16 @@ namespace OFT_UKHO_Bookshelf_Manager.Controllers
         private bool RentalExists(int id)
         {
             return _context.Rentals.Any(e => e.Id == id);
+        }
+
+        private bool CopyExists(int id)
+        {
+            return _context.Copies.Any(e => e.Id == id);
+        }
+
+        private bool UserExists(int id)
+        {
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

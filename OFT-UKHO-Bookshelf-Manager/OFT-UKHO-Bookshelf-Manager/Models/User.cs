@@ -15,6 +15,6 @@ namespace OFT_UKHO_Bookshelf_Manager.Models
         public string Surname { get; set; } = null!;
         public string? Email { get; set; }
 
-        public virtual ICollection<Rental> Rentals { get; set; }
+        public virtual ICollection<Rental> Rentals { get; private set; }
     }
 }

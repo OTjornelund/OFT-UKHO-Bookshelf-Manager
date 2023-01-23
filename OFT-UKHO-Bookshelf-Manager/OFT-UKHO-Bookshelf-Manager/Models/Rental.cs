@@ -5,9 +5,8 @@ namespace OFT_UKHO_Bookshelf_Manager.Models
 {
     public partial class Rental
     {
-        public Rental(int id, int copyId, int userId, DateTime startDateTime, DateTime? endDateTime)
+        public Rental(int copyId, int userId, DateTime startDateTime, DateTime? endDateTime)
         {
-            Id = id;
             CopyId = copyId;
             UserId = userId;
             StartDateTime = startDateTime; 
