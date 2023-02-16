@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Hero } from '../hero';
-//import { HEROES } from '../mock-heroes'; // <-- No longer needed
 import { HeroService } from '../hero.service';
 
 @Component ({
@@ -10,7 +9,7 @@ import { HeroService } from '../hero.service';
   })
 export class HeroesComponent {
 
-  heroes: Hero[] = []; //Previously: heroes = HEROES;
+  heroes: Hero[] = [];
 
   selectedHero?: Hero;
 
@@ -22,8 +21,8 @@ export class HeroesComponent {
   }
 
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes(); //Retrieves heroes from the Service
-    //(This consumes the getHeroes() result as if HeroService can fetch heroes _synchronously_.)
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes); //Retrieves heroes from the Service asynchronously by waiting for the Observable to emit the required array data
   }
 
   onSelect(hero: Hero): void {

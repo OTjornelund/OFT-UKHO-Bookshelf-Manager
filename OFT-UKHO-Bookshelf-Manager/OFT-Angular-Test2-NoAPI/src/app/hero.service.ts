@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
-//import { Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,9 @@ import { HEROES } from './mock-heroes';
 export class HeroService {
   constructor() { }
 
-  //getHeroes(): Observable<Hero[]> {
-  //  const heroes = of(HEROES);
-  //  return heroes;
-  //}
-  getHeroes(): Hero[] {
-    return HEROES;
+  getHeroes(): Observable<Hero[]> {
+    //of(HEROES) returns an Observable<Hero[]> that emits a single value; the mock heroes array
+    const heroes = of(HEROES);
+    return heroes;
   }
 }
