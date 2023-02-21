@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component ({
     selector: 'app-heroes',
@@ -13,8 +14,8 @@ export class HeroesComponent {
 
   selectedHero?: Hero;
 
-  //Parameter below both defines private property and identifies it as "HeroService" injection site.
-  constructor(private heroService: HeroService) { }
+  //Parameter below both defines private property and identifies it as an injection site for the corresponding service.
+  constructor(private heroService: HeroService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getHeroes(); //Angular calls ngOnInit() by itself, after the constructor
@@ -27,5 +28,6 @@ export class HeroesComponent {
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 }
