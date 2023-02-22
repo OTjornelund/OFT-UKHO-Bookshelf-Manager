@@ -5,10 +5,6 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OFT-UKHO-Bookshelf-Manager-API", "OFT-UKHO-Bookshelf-Manager-API\OFT-UKHO-Bookshelf-Manager-API.csproj", "{028BF249-7365-49A9-8B5D-EE382D84677D}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "OFT-Angular-Test1-EmptyWebAPI", "OFT-Angular-Test1-EmptyWebAPI\OFT-Angular-Test1-EmptyWebAPI.esproj", "{0946EF8D-F034-47C6-A8FE-3495EFF4F697}"
-EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "OFT-Angular-Test2-NoAPI", "OFT-Angular-Test2-NoAPI\OFT-Angular-Test2-NoAPI.esproj", "{2A67B314-0B80-46CF-9FC4-2573E9199CEA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,18 +15,6 @@ Global
 		{028BF249-7365-49A9-8B5D-EE382D84677D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{028BF249-7365-49A9-8B5D-EE382D84677D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028BF249-7365-49A9-8B5D-EE382D84677D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0946EF8D-F034-47C6-A8FE-3495EFF4F697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0946EF8D-F034-47C6-A8FE-3495EFF4F697}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0946EF8D-F034-47C6-A8FE-3495EFF4F697}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{0946EF8D-F034-47C6-A8FE-3495EFF4F697}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0946EF8D-F034-47C6-A8FE-3495EFF4F697}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0946EF8D-F034-47C6-A8FE-3495EFF4F697}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{2A67B314-0B80-46CF-9FC4-2573E9199CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A67B314-0B80-46CF-9FC4-2573E9199CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A67B314-0B80-46CF-9FC4-2573E9199CEA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{2A67B314-0B80-46CF-9FC4-2573E9199CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A67B314-0B80-46CF-9FC4-2573E9199CEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A67B314-0B80-46CF-9FC4-2573E9199CEA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
